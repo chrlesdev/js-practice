@@ -32,6 +32,6 @@ Today I learned that a closure is not just a function inside another function.
 A closure happens when an inner function keeps access to variables from its outer function even after the outer function has finished running.
 This allows a function to remember state without using global variables. The stored data stays in memory as long as the inner function is still being used.
 
-I also learned how to connect JavaScript with HTML using the DOM.
+I also learned how to connect JavaScript with HTML using the Java Script DOM.
 By selecting elements with `document.getElementById()` and using `addEventListener`, I can make buttons interactive.
 Using innerHTML, I can update text on the page dynamically when events happen.
