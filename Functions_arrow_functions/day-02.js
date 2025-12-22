@@ -98,7 +98,24 @@ function countingScores(playerName) {
 }
 
 const playerA = countingScores("kelvin");
-const playerB = createPlayer("Charles");
+// const playerB = createPlayer("Charles");
 
-console.log(player.add(30));
-console.log(player.addPlayerTwo(50));
+// console.log(player.add(30));
+// console.log(player.addPlayerTwo(50));
+
+// closures + dom = use State same as in react
+
+const numbers = document.getElementById("number");
+const btns = document.getElementById("btn");
+
+function clickCounter() {
+  let count = 0;
+
+  return function () {
+    count++;
+    numbers.innerHTML = count;
+  };
+}
+
+const handleclick = clickCounter;
+btns.addEventListener("click", handleclick());

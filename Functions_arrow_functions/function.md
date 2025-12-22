@@ -22,9 +22,16 @@ Closure
 A closure happens when a function is defined inside another function and remembers variables from its outer scope, even after the outer function has finished executing.
 
 Closures allow variables to live longer than the function that created them.
-
 This enables functions to retain state without using global variables.
-
 Closures are created naturally in JavaScript and are commonly used in callbacks, event handlers, and stateful logic.
-
 I understand the basic concept of closures, but I still need more practice to see how and when to use them in real examples.
+
+---
+
+Today I learned that a closure is not just a function inside another function.
+A closure happens when an inner function keeps access to variables from its outer function even after the outer function has finished running.
+This allows a function to remember state without using global variables. The stored data stays in memory as long as the inner function is still being used.
+
+I also learned how to connect JavaScript with HTML using the DOM.
+By selecting elements with `document.getElementById()` and using `addEventListener`, I can make buttons interactive.
+Using innerHTML, I can update text on the page dynamically when events happen.
