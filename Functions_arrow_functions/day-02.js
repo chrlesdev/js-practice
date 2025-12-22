@@ -4,7 +4,7 @@ function basicFunction(p1, p2) {
   return p1 * p2;
 }
 let Value1 = basicFunction(12, 23);
-console.log(Value1);
+// console.log(Value1);
 
 let arrowFunction = (pa, pb) => pa * pb;
 
@@ -19,9 +19,9 @@ const myCar = {
   year: 1998,
 };
 
-console.log(myCar.make); // "Honda"
+// console.log(myCar.make); // "Honda"
 myFunc(myCar);
-console.log(myCar.make); // "Toyota"
+// console.log(myCar.make); // "Toyota"
 
 //-----
 
@@ -35,9 +35,9 @@ const valueA = {
   games: "stardew Valley",
 };
 
-console.log(valueA.name);
+// console.log(valueA.name);
 passing(valueA);
-console.log(valueA.name);
+// console.log(valueA.name);
 
 //closures function
 
@@ -54,10 +54,51 @@ function getScore() {
 
 const name = "chakams";
 
-console.log(getScore());
-//-- create add button
+// console.log(getScore());
 
-const buttonId = document.getElementById("btn");
+function returnNegative(num) {
+  let len = num.length;
+  result = [];
+  for (let i = 0; i < len; i++) {
+    let store = num[i];
+    if (store < 1) {
+      result.push(`${store} negative`);
+    } else {
+      result.push(`${store} positive`);
+    }
+  }
+  return result;
+}
 
-function btnd() {}
-buttonId.style.color = "red";
+const value = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -1, -2, -3, -4, -5];
+
+// closures function
+
+function countingScores(playerName) {
+  let score = 0;
+
+  function add(points) {
+    if (points < 0) {
+      return "points must be a positive numbers";
+    } else {
+      score = score + points;
+      return `${playerName} score now has ${score}`;
+    }
+  }
+
+  function reset() {
+    score = 0;
+    return `${playerName} score reset to ${score}`;
+  }
+
+  return {
+    add,
+    reset,
+  };
+}
+
+const playerA = countingScores("kelvin");
+const playerB = createPlayer("Charles");
+
+console.log(player.add(30));
+console.log(player.addPlayerTwo(50));
