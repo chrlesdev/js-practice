@@ -1,11 +1,4 @@
-function check(number) {
-  if (number < 3) {
-    return "number less than 3";
-  } else {
-    return "numbers is more than 3";
-  }
-}
+function games(playerName) {}
 
-const values = [1, 2, 3, 4, 5];
-
+const player = games("keruvin");
 console.log(check(values));
