@@ -67,3 +67,55 @@ const limiter = createLimiter(3);
 
 console.log(limiter(10));
 console.log(limiter(2));
+
+/**
+ * Exercise: Login Attempt Lock (Closure + Conditional)
+
+You’re building a login system that locks after too many wrong attempts.
+
+- Rules of the universe:
+- The system has one correct password
+- The user can try at most 3 times
+- After 3 wrong attempts → permanently locked
+- If the correct password is entered before the lock → success
+- After locked → no mercy
+
+Constraints (important):
+
+- Use closure
+- Do not pass attempt count manually
+- The function must remember how many times it’s been called
+- Use conditionals (if / else) wisely
+
+Mental model hint:
+One function = the system
+
+Inner function = the attempt button
+The system remembers mistakes
+ */
+
+function createLogin(username) {
+  const passwords = "admin123";
+  let attempt = 0;
+
+  function login(password) {
+    attempt++;
+    if (attempt <= 3 && password !== passwords) {
+      return `${4 - attempt} more chance wrong password or username`;
+    } else if (password === passwords) {
+      return `welcome back ${username}`;
+    } else if (attempt > 3) {
+      return "account block";
+    }
+  }
+  return login;
+}
+
+const user = createLogin("kelvin");
+
+console.log(user("wrong"));
+console.log(user("wrong"));
+console.log(user("wrong"));
+
+console.log(user("wrong"));
+console.log(user("admin123"));
