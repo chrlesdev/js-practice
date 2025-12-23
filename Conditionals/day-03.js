@@ -16,9 +16,9 @@ manager(workers);
 function manager(input) {
   for (let i = 0; i < input.length; i++) {
     if (input[i].id <= 1) {
-      console.log(`${input[i].name} is a manager`);
+      //   console.log(`${input[i].name} is a manager`);
     } else {
-      console.log(`${input[i].name} is a normal worker`);
+      //   console.log(`${input[i].name} is a normal worker`);
     }
   }
 }
@@ -65,8 +65,8 @@ function createLimiter(limit) {
 
 const limiter = createLimiter(3);
 
-console.log(limiter(10));
-console.log(limiter(2));
+// console.log(limiter(10));
+// console.log(limiter(2));
 
 /**
  * Exercise: Login Attempt Lock (Closure + Conditional)
@@ -113,9 +113,81 @@ function createLogin(username) {
 
 const user = createLogin("kelvin");
 
-console.log(user("wrong"));
-console.log(user("wrong"));
-console.log(user("wrong"));
+// console.log(user("wrong"));
+// console.log(user("wrong"));
+// console.log(user("wrong"));
 
-console.log(user("wrong"));
-console.log(user("admin123"));
+// console.log(user("wrong"));
+// console.log(user("admin123"));
+
+/**
+ * Exercise: Smart Counter with Rules
+
+You will create a function that creates a counter with special behavior.
+
+Requirements
+
+Create a parent function called createCounter
+It takes one argument: start
+
+Inside it, keep a private number (this is the closure part)
+
+Return one function that:
+
+- When called with no argument, returns the current number
+- When called with a positive number, increases the counter
+- When called with a negative number, reject it with a message
+- If the counter ever goes above 10, it becomes locked
+- Once locked, it always returns "counter locked"
+
+Example behavior (this is not code, this is reality):
+
+- counter() → 0
+- counter(3) → 3
+- counter(5) → 8
+- counter(-1) → "negative not allowed"
+- counter(3) → "counter locked"
+- counter() → "counter locked"
+
+Rules:
+
+❌ No global variables
+❌ No arrays
+❌ No classes
+❌ No copying previous solutions
+
+✅ One parent function
+✅ One inner function
+✅ State must live in the closure
+ */
+
+function createCounter(start) {
+  let prevValue = start;
+  let isLocked = false;
+  function counters(currValue) {
+    if (isLocked) {
+      return "locked";
+    }
+    if (currValue === undefined) {
+      return `really bro ? undefined ? i'll just give you this previous number ${prevValue} `;
+    }
+
+    if (currValue < 0) {
+      return "only positive number";
+    } else if (prevValue + currValue > 10) {
+      isLocked = true;
+      return "locked";
+    } else if (currValue >= 0) {
+      return (prevValue = currValue + prevValue);
+    }
+  }
+  return counters;
+}
+const counter = createCounter(0);
+
+console.log(counter(0));
+console.log(counter(-2));
+console.log(counter(3));
+console.log(counter());
+console.log(counter(9));
+console.log(counter(3));
