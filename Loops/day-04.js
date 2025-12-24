@@ -59,7 +59,7 @@ function counters(num) {
 }
 let valueArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-console.log(counters(valueArray));
+// console.log(counters(valueArray));
 /**
  * Exercise 1 — Early Exit Loop (new idea)
 
@@ -82,7 +82,7 @@ function evenNumber(num) {
 }
 
 const ValueB = [1, 4, 5, 6, 7, 8, 10, 2, 12];
-console.log(evenNumber(ValueB));
+// console.log(evenNumber(ValueB));
 
 /**
  * 
@@ -113,6 +113,23 @@ decision timing
 
  */
 
+function sumNum(num) {
+  let prevValue = 0;
+  for (let i = 0; i < num.length; i++) {
+    prevValue += num[i];
+    if (prevValue > 20) {
+      return prevValue - num[i];
+    } else if (prevValue === 20) {
+      return prevValue;
+    }
+  }
+  return prevValue;
+}
+
+let valueC = [2, 4, 4, 5, 6, 5];
+
+console.log(sumNum(valueC));
+
 /**
  * Exercise 3 — Reverse Without Helpers (optional spicy)
 
@@ -131,3 +148,7 @@ Forces you to think about indexes
 
 Builds real loop intuition
  */
+
+function returning() {}
+
+const valueD = [1, 2, 3, 4, 5];
