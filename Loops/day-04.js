@@ -128,7 +128,7 @@ function sumNum(num) {
 
 let valueC = [2, 4, 4, 5, 6, 5];
 
-console.log(sumNum(valueC));
+// console.log(sumNum(valueC));
 
 /**
  * Exercise 3 — Reverse Without Helpers (optional spicy)
@@ -149,6 +149,33 @@ Forces you to think about indexes
 Builds real loop intuition
  */
 
-function returning() {}
+/**
+ * let store = [];
+  for (let i = num.length - 1; i >= 0; i--) {
+    store.push(num[i]);
+  }
 
-const valueD = [1, 2, 3, 4, 5];
+  return store;
+
+
+     ^
+     |
+     |
+
+that's not how it should be, "its right but it reading from the back"
+it should be "swap from the back to the front"
+
+ */
+
+function returning(num) {
+  let store = [];
+  for (let i = num.length - 1; i >= 0; i--) {
+    store.push(num[i]);
+  }
+
+  return store;
+}
+
+let valueD = [1, 25, 32, 4, 15, 60];
+
+console.log(returning(valueD));
