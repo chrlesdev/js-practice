@@ -86,4 +86,91 @@ function score(num) {
   };
 }
 
-console.log(score(numbers));
+// console.log(score(numbers));
+
+/**
+ * Exercise: Product Inventory Analyzer
+Goal:
+You're given an array of product objects. Write a function that analyzes the inventory and returns a summary object.
+Input:
+An array of objects like this:
+[
+  { name: "Laptop", price: 1000, inStock: true, quantity: 5 },
+  { name: "Mouse", price: 25, inStock: true, quantity: 50 },
+  { name: "Keyboard", price: 75, inStock: false, quantity: 0 },
+  { name: "Monitor", price: 300, inStock: true, quantity: 10 },
+  { name: "Webcam", price: 80, inStock: false, quantity: 0 }
+]
+
+Rules:
+
+- Use a loop
+- No map, filter, or reduce
+- One function
+- One return (at the end)
+ 
+What the function must return:
+An object with these properties:
+{
+  totalValue: ___,        // sum of (price × quantity) for ALL products
+  inStockCount: ___,      // how many products have inStock: true
+  outOfStockCount: ___,   // how many products have inStock: false
+  averagePrice: ___,      // average price of all products (rounded to 2 decimals)
+  mostExpensive: ___      // the name of the most expensive product
+}
+
+
+example:
+{
+  totalValue: 9125,
+  inStockCount: 3,
+  outOfStockCount: 2,
+  averagePrice: 296.00,
+  mostExpensive: "Laptop"
+}
+*/
+
+function product(value) {
+  let totalValue = 0;
+  let inStockCount = 0;
+  let outOfStockCount = 0;
+  let store = 0;
+  let highestPrice = 0;
+  let mostExpensive = "";
+
+  for (let i = 0; i < value.length; i++) {
+    totalValue += value[i].price * value[i].quantity;
+
+    if (value[i].inStock === true) {
+      inStockCount++;
+    } else {
+      outOfStockCount++;
+    }
+
+    store += value[i].price;
+
+    if (value[i].price > highestPrice) {
+      highestPrice = value[i].price;
+      mostExpensive = value[i].name;
+    }
+  }
+  let averagePrice = (store / value.length).toFixed(2);
+
+  return {
+    totalValue: totalValue,
+    inStockCount: inStockCount,
+    outOfStockCount: outOfStockCount,
+    averagePrice: averagePrice,
+    mostExpensive: mostExpensive,
+  };
+}
+
+const list = [
+  { name: "Laptop", price: 1000, inStock: true, quantity: 5 },
+  { name: "Mouse", price: 25, inStock: true, quantity: 50 },
+  { name: "Keyboard", price: 75, inStock: false, quantity: 0 },
+  { name: "Monitor", price: 300, inStock: true, quantity: 10 },
+  { name: "Webcam", price: 80, inStock: false, quantity: 0 },
+];
+
+console.log(product(list));
