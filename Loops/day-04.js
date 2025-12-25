@@ -178,4 +178,41 @@ function returning(num) {
 
 let valueD = [1, 25, 32, 4, 15, 60];
 
-console.log(returning(valueD));
+// console.log(returning(valueD));
+
+/**
+ * Loops + function + DOM
+ * Create a button that counts how many times it has been clicked and shows the history of clicks.
+ */
+
+// const sumBtn = document.getElementById("btn");
+// const num = document.getElementById("count");
+// const history = document.getElementById("history");
+
+// function clickCounter() {
+//   let count = 0;
+//   return function () {
+//     count++;
+//     num.innerHTML = count;
+//     history.innerHTML = count;
+//   };
+// }
+
+// const handleButton = clickCounter;
+// sumBtn.addEventListener("click", handleButton());
+
+Array.prototype.last = function () {
+  if (this.length === 0) {
+    return 1;
+  } else if (this) {
+    let a = this.length - 1;
+    let b = this[a];
+    return b;
+  }
+};
+
+let nothings = [null, {}, 3];
+let nothing = [];
+let arr2 = ["a", "b", "c"];
+console.log(arr2.last());
+console.log(typeof nothing);
