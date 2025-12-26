@@ -21,3 +21,5 @@ let {
 
 let rank = player.rank;
 console.log(rank ? rank : "rookie");
+
+function printSummary(arg) {}
