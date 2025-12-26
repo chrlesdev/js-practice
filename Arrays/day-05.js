@@ -173,4 +173,80 @@ const list = [
   { name: "Webcam", price: 80, inStock: false, quantity: 0 },
 ];
 
-console.log(product(list));
+// console.log(product(list));
+
+//
+
+// Exercise 1: Array.prototype.first()
+// Create a method that returns the first element of an array. If the array is empty, return -1.
+
+Array.prototype.first = function () {
+  if (this.length === 0) {
+    return -1;
+  } else {
+    return this[0];
+  }
+};
+
+// console.log([1, 2, 3].first()); // should return 1
+// console.log([].first());
+
+// Exercise 2: Array.prototype.sum()
+// Create a method that returns the sum of all numbers in an array.
+
+Array.prototype.sum = function () {
+  let store = 0;
+  for (let i = 0; i < this.length; i++) {
+    store += this[i];
+  }
+
+  return store;
+};
+
+// console.log([1, 2, 3].sum()); // should return 6
+// console.log([10, -5, 3].sum()); // should return 8
+// console.log([].sum());
+
+// Exercise 3: Array.prototype.getAt()
+// Create a method that takes an index and returns the element at that position. If the index is negative, count from the end (like Python!). If index is out of bounds, return undefined.
+
+Array.prototype.getAt = function (index) {
+  if (index >= 0) {
+    return this[index];
+  } else if (index < 0) {
+    let a = this.length + index;
+    return this[a];
+  }
+};
+
+// console.log([1, 2, 3].getAt(0)); // should return 1
+// console.log([1, 2, 3].getAt(-1)); // should return 3 (last element)
+// console.log([1, 2, 3].getAt(-2)); // should return 2
+// console.log([1, 2, 3].getAt(10)); // should return undefined
+
+//---
+
+let nums = [1, 2, 3, 4];
+
+let multiply = nums.map((num) => num * 2);
+// console.log(multiply);
+
+let words = ["hello", "world", "javascript"];
+let sayHello = words.map((e) => e.toUpperCase());
+// console.log(sayHello);
+
+let wordss = ["cat", "elephant", "dog"];
+let long = wordss.map((e) => e.length);
+// console.log(long);
+
+let scores = [85, 90, 78, 92];
+let sum = scores.map((e) => {
+  let store = [];
+  for (let i = 0; i < e.length; i++) {
+    let sumValue = e[i] + 10;
+    return store.push(sumValue);
+  }
+  return store;
+});
+
+// console.log(sum);
