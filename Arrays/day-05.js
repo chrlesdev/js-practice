@@ -250,3 +250,58 @@ let sum = scores.map((e) => {
 });
 
 // console.log(sum);
+
+//--
+
+let scoresA = [45, 67, 89, 23, 91, 34];
+
+let filters = scoresA.filter((e) => {
+  if (e < 50) {
+    return;
+  } else {
+    return e;
+  }
+});
+
+// console.log(filters);
+
+let wordsA = ["cat", "elephant", "dog", "tiger", "ant"];
+
+let filtersA = wordsA.filter((e) => {
+  if (e.length < 4) return false;
+  return e;
+});
+
+// console.log(filtersA);
+
+let temps = [15, -5, 22, -10, 8, -3];
+let filtersB = temps.filter((e) => {
+  if (e > 0) return false;
+  return e;
+});
+
+// console.log(filtersB);
+
+// ---
+let numbersA = [2, 3, 4];
+
+let reduceA = numbersA.reduce((acc, num) => acc * num, 1);
+
+console.log(reduceA);
+
+let scoresB = [45, 67, 89, 23, 91, 34];
+
+let reduceB = scoresB.reduce((acc, scr) => (acc < scr ? scr : acc), 0);
+
+console.log(reduceB);
+
+let wordsB = ["cat", "elephant", "dog", "tiger"];
+let reduceC = wordsB.reduce((acc, wrd) => {
+  if (wrd.length > 3) {
+    return acc + 1;
+  } else {
+    return acc;
+  }
+}, 0);
+
+console.log(reduceC);
