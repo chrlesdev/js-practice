@@ -90,12 +90,12 @@ const response = {
 };
 
 let { status: responsStatus } = response;
-console.log(responsStatus);
+// console.log(responsStatus);
 
 let { data } = response;
 let [{ id: ids, title: titles, stats }] = data;
 
-console.log(`${ids}, ${titles}, ${stats}`);
+// console.log(`${ids}, ${titles}, ${stats}`);
 
 let {
   data: [
@@ -106,7 +106,7 @@ let {
     },
   ],
 } = response;
-console.log(`the first data is: id: ${id}, title: ${title}, likes: ${likes}, comment: ${comments}`);
+// console.log(`the first data is: id: ${id}, title: ${title}, likes: ${likes}, comment: ${comments}`);
 
 function printPostSummary([
   {
@@ -117,4 +117,134 @@ function printPostSummary([
   return `${title} - ${likes}`;
 }
 
-console.log(printPostSummary(response.data));
+// console.log(printPostSummary(response.data));
+// -----
+// spread / ...
+
+const user = {
+  id: 1,
+  name: "Charles",
+  role: "admin",
+  lastLogin: "today",
+};
+
+const { names, ...rest } = user;
+
+// console.log(name); // "Charles"
+// console.log(rest);
+/*
+{
+  id: 1,
+  role: "admin",
+  lastLogin: "today"
+}
+*/
+
+const baseUser = { name: "Charles", level: 7 };
+const upgradedUser = { ...baseUser, level: 8 };
+
+// console.log(upgradedUser);
+
+const scores = [100, 95, 90, 85];
+
+const [first, second, ...others] = scores;
+
+// console.log(first); // 100
+// console.log(second);
+// console.log(others); // [95, 90, 85]
+
+//Final Exercise: Data Surgery
+/**
+1️⃣ Extract name and email
+2️⃣ Put everything else into a variable called metadata
+3️⃣ Create a new object called publicUser that:
+      - contains name
+      - contains stats
+      - does not contain email or role
+
+Rules:
+  - No mutation
+  - No manual copying
+  - Use rest and spread
+ */
+
+const users = {
+  id: 1,
+  name: "NightCoder",
+  email: "night@code.dev",
+  role: "admin",
+  statsA: {
+    posts: 12,
+    likes: 340,
+  },
+};
+
+let { name: nameA, email } = users;
+// console.log(nameA, email);
+
+let metadata = { ...users };
+// console.log(metadata);
+
+const { name, email: emails } = users;
+
+const publicUser = {
+  name: users.name,
+  stats: users.statsA,
+};
+
+// console.log(publicUser);
+
+//-----
+const apiResponse = {
+  status: "success",
+  data: {
+    user: {
+      id: 7,
+      username: "NightCoder",
+      email: "night@code.dev",
+      role: "admin",
+      stats: {
+        posts: 12,
+        likes: 340,
+      },
+    },
+    token: "secret-token-123",
+  },
+};
+
+/**
+ * Your tasks (this is the whole workout):
+
+- Destructure username and email from the user.
+- Destructure posts from stats.
+- Create a new object called publicUser that contains:
+    - username
+    - posts
+
+❌ Do NOT include email, role, or token.
+
+No loops. No conditionals. Just objects & destructuring.
+ */
+
+// 1.
+let { username: nameUser, email: userEmail } = apiResponse.data.user;
+
+console.log(nameUser, userEmail);
+
+//2.
+let { data: datas } = apiResponse;
+let { user: userData } = datas;
+let {
+  stats: { posts },
+} = userData;
+
+console.log(posts);
+
+//3.
+
+const publicUsers = {
+  usernamess: apiResponse.data.user.username,
+  posts: apiResponse.data.user.stats.posts,
+};
+
+console.log(publicUsers);
