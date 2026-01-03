@@ -1,6 +1,6 @@
 const btn = document.getElementById("button");
-const fact = document.getElementById("fact");
-const factList = document.getElementById("factList");
+const facts = document.getElementById("fact");
+const numbers = document.getElementById("count");
 
 async function getData() {
   try {
@@ -11,20 +11,35 @@ async function getData() {
     const result = await response.json();
 
     const store = result.data;
-
-    // const {
-    //   data: [{ fact }],
-    // } = result;
-    for (let i = 0; i < store.length; i++) {
-      console.log(store[i].fact);
+    function handleFact() {
+      let factData = store;
+      let count = 0;
+      return function () {
+        count++;
+        numbers.innerHTML = count;
+        newLi = document.createElement("li");
+        newContent = document.createTextNode(factData[count].fact);
+        newLi.appendChild(newContent);
+        document.body.insertBefore(newLi, facts);
+      };
     }
-    // console.log(store);
+
+    const buttonhandler = handleFact;
+
+    btn.addEventListener("click", buttonhandler());
+
+    // return store;
   } catch (error) {
     console.log(error);
   }
 }
-
 getData();
+
+// function handleFact() {
+//   return factList.append("olololololololo");
+// }
+
+// btn = addEventListener("click", handleFact);
 
 //testing
 
