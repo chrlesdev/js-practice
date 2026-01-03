@@ -9,26 +9,28 @@ async function getData() {
       throw new Error(`Response status: ${response.status}`);
     }
     const result = await response.json();
-
     const store = result.data;
+
     function handleFact() {
       let factData = store;
       let count = 0;
       return function () {
+        if (count >= factData.length) {
+          return count;
+        }
         count++;
         numbers.innerHTML = count;
         newLi = document.createElement("li");
-        newContent = document.createTextNode(factData[count].fact);
+        newContent = document.createTextNode(factData[count - 1].fact);
         newLi.appendChild(newContent);
         document.body.insertBefore(newLi, facts);
       };
     }
-
     const buttonhandler = handleFact;
 
     btn.addEventListener("click", buttonhandler());
 
-    // return store;
+    // return ;
   } catch (error) {
     console.log(error);
   }
