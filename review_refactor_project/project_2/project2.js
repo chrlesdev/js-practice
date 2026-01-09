@@ -1,3 +1,6 @@
+const questionList = document.getElementById("questionList");
+const button = document.getElementById("button");
+
 function checkAnswer() {}
 function showScore() {}
 
@@ -54,40 +57,23 @@ const questions = [
   },
 ];
 
-let { question } = questions[0];
-function questionFunc(questions) {
-  let index = 0;
+button.addEventListener("click");
 
-  return function () {
-    if (index >= questions.length) {
-      return null; // quiz finished
-    }
+// let { question } = questions[0];
+// function questionFunc(questions) {
+//   let index = 0;
 
-    return questions[index++];
-  };
-}
-
-const nextQuestion = questionFunc(questions);
-console.log(nextQuestion()); // question 1
-console.log(nextQuestion()); // question 2
-console.log(nextQuestion()); // question 3
-
-// console.log();
-
-// function a() {
-//   let count = 0;
 //   return function () {
-//     return ++count;
+//     if (index >= questions.length) {
+//       return null; // quiz finished
+//     }
+
+//     return questions[index++];
 //   };
 // }
 
-// const counter = a();
-// console.log(counter() - 1);
-// console.log(counter() - 1);
-// console.log(counter() - 1);
-// console.log(counter() - 1);
-// console.log(counter() - 1);
-// console.log(counter() - 1);
-// console.log(counter() - 1);
-// console.log(counter() - 1);
-// console.log(counter() - 1);
+// const nextQuestion = questionFunc(questions);
+// console.log(nextQuestion()); // question 1
+// console.log(nextQuestion()); // question 2
+// console.log(nextQuestion()); // question 3
+// 1st goal = shows question into the html using dom

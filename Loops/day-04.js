@@ -203,7 +203,7 @@ let valueD = [1, 25, 32, 4, 15, 60];
 
 Array.prototype.last = function () {
   if (this.length === 0) {
-    return 1;
+    return -1;
   } else if (this) {
     let a = this.length - 1;
     let b = this[a];

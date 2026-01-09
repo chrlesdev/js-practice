@@ -26,9 +26,9 @@ async function getData() {
         document.body.insertBefore(newLi, facts);
       };
     }
-    const buttonhandler = handleFact;
+    const buttonhandler = handleFact();
 
-    btn.addEventListener("click", buttonhandler());
+    btn.addEventListener("click", buttonhandler);
 
     // return ;
   } catch (error) {
