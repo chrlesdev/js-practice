@@ -26,6 +26,8 @@ function double(num, callback) {
 
 const numbers = [1, 2, 3, 4, 5];
 
+//
+
 // TODO: Use forEach to print each number
 // Hint: numbers.forEach(???)
 // TODO: Use forEach to print each number
@@ -41,15 +43,19 @@ function myForEach(array, callback) {
 
 const fruits = ["apple", "banana", "orange"];
 
-myForEach(fruits, function (fruit) {
-  console.log(fruit);
-});
+// myForEach(fruits, function (fruit) {
+//   console.log(fruit);
+// });
 
 //5
 function waitAndSay(message, callback) {
   setTimeout(() => {
-    // TODO: call callback with the message
+    callback(message);
   }, 2000);
 }
+
+waitAndSay("hello", (e) => {
+  console.log(e);
+});
 
 // TODO: Call waitAndSay with "Hello!" and print it
