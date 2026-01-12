@@ -1,6 +1,3 @@
-const { rejects } = require("assert");
-const { resolve } = require("path");
-
 function fetchUser(userId) {
   return new Promise((resolve, rejects) => {
     setTimeout(() => {
@@ -24,25 +21,33 @@ function fetchPosts(userId) {
     }, Math.random() * 1000);
   });
 }
-
 function fetchComments(postId) {
-  return new Promise((resolve, rejects) => {
-    const commentCount = Math.floor(Math.random() * 20);
-    resolve({ postId: postId, count: commentCount });
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const commentCount = Math.floor(Math.random() * 20);
+      resolve({ postId: postId, count: commentCount });
+    }, Math.random() * 1000);
   });
 }
 
 fetchUser(1)
   .then((user) => {
-    fetchPosts(user.id)
-      .then((postId) => {
-        for (let i = 0; i < postId.length; i++) {
-          // console.log(postId[i].likes);
-          fetchComments(postId[i].id).then((comments) => console.log(comments));
-        }
-      })
-      .catch((err) => console.error(err));
+    console.log(user);
+    return fetchPosts(user.id);
   })
+  .then((posts) => {
+    console.log(`post: `, posts);
+
+    const commentPromises = posts.map((post) => {
+      return fetchComments(post.id);
+    });
+
+    return Promise.all(commentPromises);
+  })
+  .then((comments) => {
+    console.log(`comment: `, comments);
+  })
+
   .catch((err) => console.error(err));
 
 // fetchPosts(1)
