@@ -1,28 +1,3 @@
-/**
-The Challenge: User Profile Dashboard
-Build a system that:
-
-Fetches a user (async)
-Fetches their posts (async, using user.id)
-Fetches comments for each post (async, using post.id)
-Calculates total engagement (sync)
-Handles errors properly
- */
-// Simulated API functions (don't modify these)
-
-/**
- *Part 1: Callback Version
-Write getUserDashboard(userId, callback) that:
-
-Fetches user
-Then fetches their posts
-Then fetches comments for EACH post (loop needed!)
-Calculates total likes + total comments
-Returns: { user, totalLikes, totalComments }
-
-Handle errors at each step! 
- */
-
 function fetchUser(userId, callback) {
   setTimeout(() => {
     if (userId <= 0) {
@@ -49,3 +24,48 @@ function fetchComments(postId, callback) {
     callback(null, { postId: postId, count: commentCount });
   }, Math.random() * 1000);
 }
+
+function getUserDashboard(userId, callback) {
+  // All your logic goes inside here
+  let totalLikes = 0;
+  let commentsReceived = 0;
+  let totalCommentCount = 0;
+  fetchUser(userId, (err, user) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(user);
+    }
+
+    fetchPosts(user.id, (err, post) => {
+      if (err) console.error(err);
+
+      for (let i = 0; i < post.length; i++) {
+        fetchComments(post[i].id, (err, comments) => {
+          if (err) console.error(err);
+          console.log("Comments for post :", comments);
+
+          commentsReceived++;
+          totalCommentCount += comments.count;
+
+          if (commentsReceived === post.length) {
+            console.log("Total comments:", totalCommentCount);
+            console.log("Total likes:", totalLikes);
+          }
+        });
+        totalLikes = totalLikes + post[i].likes;
+      }
+    });
+  });
+
+  callback(null, {
+    user: userId,
+    totalLikes: totalLikes,
+    totalComment: totalCommentCount,
+  });
+}
+
+getUserDashboard(1, (err, result) => {
+  if (err) console.error(err);
+  console.log(result);
+});
