@@ -26,14 +26,19 @@ const button = document.getElementById("button");
 // getPokemon();
 
 button.addEventListener("click", async () => {
-  const poke = await fetch(`https://pokeapi.co/api/v2/pokemon/${searchPokemon.value}`);
-  if (!poke.ok) {
-    console.log("pokemon api didn't get fetch");
-  }
-  const responseData = await poke.json();
-  image.src = responseData.sprites.front_default;
-  pokemonName.textContent = responseData.species.name.toUpperCase();
-  hp.textContent = `HP: ${responseData.stats[0].base_stat}`;
+  try {
+    const poke = await fetch(`https://pokeapi.co/api/v2/pokemon/${searchPokemon.value}`);
+    if (!poke.ok) {
+      console.log("pokemon api didn't get fetch");
+    }
+    const responseData = await poke.json();
+    hp.textContent = `HP: ${responseData.stats[0].base_stat}`;
+    image.src = responseData.sprites.front_default;
+    pokemonName.textContent = responseData.species.name.toUpperCase();
 
-  console.log(responseData);
+    console.log(responseData);
+  } catch (error) {
+    console.log("pokemon did not found");
+    pokemonName.textContent = "pokemon did not Found";
+  }
 });
