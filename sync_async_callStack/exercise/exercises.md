@@ -86,3 +86,13 @@ getUserDashboard(1, (err, result) => {
   }
 });
 ```
+
+// Without await
+const delivery = Promise.all(orders);
+console.log(delivery);
+// "Your food is on the way!" ← Not the food itself!
+
+// With await
+const food = await Promise.all(orders);
+console.log(food);
+// [🍕, 🍔, 🌮] ← The actual food!
