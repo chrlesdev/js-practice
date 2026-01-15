@@ -62,10 +62,37 @@ async function getData() {
   }
 }
 
-getData();
+// getData();
 
 // Your task:
 // 1. Fetch all 3 at once
 // 2. Get their names
 // 3. Log all 3 names
 // Hint: Use Promise.all() and map()
+
+function fastAPI() {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve("Fast API responded!"), 1000);
+  });
+}
+
+function slowAPI() {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve("Slow API responded!"), 3000);
+  });
+}
+
+function mediumAPI() {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve("Medium API responded!"), 2000);
+  });
+}
+
+// Your task:
+// Use Promise.race() to get whichever finishes FIRST
+// It should log "Fast API responded!" after 1 second
+// (not waiting for the other two)
+
+// Hint: Promise.race([...]) returns the first one to resolve
+
+Promise.race([fastAPI(), slowAPI(), mediumAPI()]).then((val) => console.log(val));
