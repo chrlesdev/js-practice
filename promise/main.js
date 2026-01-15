@@ -95,4 +95,42 @@ function mediumAPI() {
 
 // Hint: Promise.race([...]) returns the first one to resolve
 
-Promise.race([fastAPI(), slowAPI(), mediumAPI()]).then((val) => console.log(val));
+// Promise.race([fastAPI(), slowAPI(), mediumAPI()]).then((val) => console.log(val));
+
+function unreliableAPI() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (Math.random() > 0.5) {
+        resolve("Success!");
+      } else {
+        reject(new Error("Failed! Try Again !!"));
+      }
+    }, 1000);
+  });
+}
+
+async function awaitData() {
+  let attempt = 1;
+
+  while (true) {
+    console.log(`Attempt ${attempt}...`);
+
+    try {
+      const response = await unreliableAPI();
+      console.log(response);
+      break;
+      // TODO: Call unreliableAPI and await it
+      // TODO: If we get here, it succeeded! Break the loop
+    } catch (error) {
+      console.error("failed to fetch! retrying...");
+      // TODO: If we get here, it failed. Continue looping
+    }
+
+    attempt++;
+  }
+}
+
+awaitData();
+// unreliableAPI()
+//   .then((value) => console.log(value))
+//   .catch((err) => console.error(err));
