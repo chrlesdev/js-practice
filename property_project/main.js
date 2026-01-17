@@ -5,6 +5,7 @@ const price = document.getElementById("price");
 const button = document.getElementById("button");
 const show = document.getElementById("show");
 const PropertyList = document.getElementById("propertyList");
+const button1 = document.getElementById("buttons");
 
 // function showProperty(text) {
 //   const h1 = document.createElement("p");
@@ -12,12 +13,20 @@ const PropertyList = document.getElementById("propertyList");
 //   PropertyList.append(h1);
 // }
 
+button1.addEventListener("click", function () {
+  const properties = JSON.parse(localStorage.getItem("properties"));
+
+  console.log(properties[1].id);
+});
+
 function displayAllProperties() {
   const properties = JSON.parse(localStorage.getItem("properties")) || [];
   const container = document.getElementById("propertyList"); // ← Add this!
   container.innerHTML = "";
+  let counter = 0;
   properties.forEach((property) => {
     const card = document.createElement("div");
+    const button1 = document.createElement("button");
     card.innerHTML = `
     <h3>${property.name}</h3>
       <p>${property.description}</p>
@@ -42,14 +51,18 @@ function displayAllProperties() {
 //   showProperty(`property Location: ${stored.location}`);
 //   showProperty(`property Price: ${stored.prices}`);
 // });
+let counter = 0;
 
 button.addEventListener("click", function () {
+  let id = counter++;
+
   const value1 = names.value;
   const value2 = description.value;
   const value3 = locations.value;
   const value4 = price.value;
 
   const property = {
+    id: id,
     name: value1,
     description: value2,
     location: value3,
