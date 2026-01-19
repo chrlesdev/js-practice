@@ -5,35 +5,34 @@ const price = document.getElementById("price");
 const button = document.getElementById("button");
 const show = document.getElementById("show");
 const PropertyList = document.getElementById("propertyList");
-const button1 = document.getElementById("buttons");
 
-// function showProperty(text) {
-//   const h1 = document.createElement("p");
-//   h1.textContent = text;
-//   PropertyList.append(h1);
-// }
 
-button1.addEventListener("click", function () {
-  const properties = JSON.parse(localStorage.getItem("properties"));
 
-  console.log(properties[1].id);
-});
+function deleteProperty(id) { // Renamed for clarity
+  let properties = JSON.parse(localStorage.getItem("properties"));
+  properties = properties.filter(property => property.id !== id);
+  localStorage.setItem("properties", JSON.stringify(properties));
+  displayAllProperties(); // Re-display after deleting
+}
+
+function editProperty(id) {
+  
+}
 
 function displayAllProperties() {
   const properties = JSON.parse(localStorage.getItem("properties")) || [];
-  const container = document.getElementById("propertyList"); // ← Add this!
+  const container = document.getElementById("propertyList");
   container.innerHTML = "";
-  let counter = 0;
+  
   properties.forEach((property) => {
     const card = document.createElement("div");
-    const button1 = document.createElement("button");
     card.innerHTML = `
-    <h3>${property.name}</h3>
+      <h3>${property.name}</h3>
       <p>${property.description}</p>
       <p>Location: ${property.location}</p>
-      <p>Price: $${property.prices}</p>
-      <button>Delete</button>
-      <button>Edit</button>
+      <p>Price: $${property.price}</p>
+      <button onclick="deleteProperty(${property.id})">Delete</button>
+      <button onclick="editProperty(${property.id})">Edit</button>
       <hr>
     `;
     container.appendChild(card);
@@ -42,27 +41,20 @@ function displayAllProperties() {
 
 // displayAllProperties();
 
-// show.addEventListener("click", function () {
-//   const y = localStorage.getItem("property");
-//   if (!y) return;
-//   const stored = JSON.parse(y);
-//   showProperty(`property Name: ${stored.name}`);
-//   showProperty(`property Description: ${stored.description}`);
-//   showProperty(`property Location: ${stored.location}`);
-//   showProperty(`property Price: ${stored.prices}`);
-// });
-let counter = 0;
+show.addEventListener("click", displayAllProperties);
 
+
+
+const properties = JSON.parse(localStorage.getItem("properties")) || [];
 button.addEventListener("click", function () {
-  let id = counter++;
-
   const value1 = names.value;
   const value2 = description.value;
   const value3 = locations.value;
   const value4 = price.value;
 
+  const id = properties.length;
   const property = {
-    id: id,
+    id,
     name: value1,
     description: value2,
     location: value3,
@@ -73,8 +65,6 @@ button.addEventListener("click", function () {
   //   alert("Please fill in all fields!");
   //   return; // Stop here, don't save
   // }
-
-  const properties = JSON.parse(localStorage.getItem("properties")) || [];
 
   properties.push(property);
 
